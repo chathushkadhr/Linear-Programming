@@ -17,22 +17,25 @@ def float_to_mixed_number(value):
         return  f"{integer_part}"
     if not integer_part and fractional_part:
         return  f"{fractional_part}"
+    if not integer_part and not fractional_part:
+        return  f"{0}"
     
-# def print_mat(mat,columns,rows):
-#     data = dict()
-#     for col in range(len(columns)):
-#         data[columns[col]] = [float_to_mixed_number(row[col]) for row in mat]
 
-#     df = pd.DataFrame(data, index = rows[:])   
-#     print(df)    
- 
 def print_mat(mat,columns,rows):
     data = dict()
     for col in range(len(columns)):
-        data[columns[col]] = [row[col] for row in mat]
+        data[columns[col]] = [float_to_mixed_number(row[col]) for row in mat]
 
     df = pd.DataFrame(data, index = rows[:])   
-    print(df)  
+    print(df)    
+ 
+# def print_mat(mat,columns,rows):
+#     data = dict()
+#     for col in range(len(columns)):
+#         data[columns[col]] = [row[col] for row in mat]
+
+#     df = pd.DataFrame(data, index = rows[:])   
+#     print(df)  
 
 def is_feasible(data,columns,basic):
 
@@ -260,12 +263,13 @@ def integerize(mat, columns, basic):
     return mat.tolist(), columns, basic
     
 
-data = ['1 -1	-1	0	0	0',
-'0 3	2	1	0	5',
-'0 0	1	0	1	2',
+data = ['1 -1 -1 -1 0 0 0 0',
+'0 6 -1 5 1 0 0 1',
+'0 4 0 -4 0 1 0 1',
+'0 1 7 10 0 0 1 1'
 ]
-columns = "Z X1	X2	S1	S2	Solution".split()
-rows = "Z S1 S2 ".split()
+columns = "Z X1	X2 X3 S1 S2 S3	Solution".split()
+rows = "Z S1 S2 S3".split()
 MAXI = True
 
 
